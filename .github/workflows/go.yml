@@ -32,9 +32,11 @@ jobs:
           sudo systemctl enable --now libvirtd
           sudo systemctl start libvirtd
 
-      - name: Build
+      - name: WGET
         run: wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 
       - name:  Resize
         run: qemu-img resize noble-server-cloudimg-amd64.img +20G
 
+      - name:  Resize
+        run: sudo virt-customize  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop, xrdp   --run-command "systemctl gdm enable"
