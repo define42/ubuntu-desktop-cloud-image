@@ -38,5 +38,5 @@ jobs:
       - name:  Resize
         run: qemu-img resize noble-server-cloudimg-amd64.img +20G
 
-      - name:  Resize
-        run: sudo virt-customize  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop, xrdp   --run-command "systemctl gdm enable"
+      - name:  Extend cloud image
+        run: sudo virt-customize  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop   --run-command "systemctl gdm enable"
