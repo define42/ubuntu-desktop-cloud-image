@@ -42,5 +42,5 @@ jobs:
         env:
           LIBGUESTFS_BACKEND: direct
           LIBGUESTFS_NETWORK: "1"
-          LIBGUESTFS_MEMSIZE: "768"
+          LIBGUESTFS_MEMSIZE: "512"
         run: sudo virt-customize -v  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop
