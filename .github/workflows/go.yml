@@ -39,4 +39,7 @@ jobs:
         run: qemu-img resize noble-server-cloudimg-amd64.img +20G
 
       - name:  Extend cloud image
+        env:
+          LIBGUESTFS_BACKEND: direct
+          LIBGUESTFS_NETWORK: "1"
         run: sudo virt-customize -v  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop
