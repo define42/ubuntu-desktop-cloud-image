@@ -1,0 +1,40 @@
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+    tags-ignore:
+      - "v*"          # prevent infinite loops when pushing tags
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # required for tags + GitHub releases
+      packages: write   # required for GHCR push
+
+    steps:
+      # -------------------------------
+      # Checkout
+      # -------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # REQUIRED for tag calculation
+
+      - name: Install packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libvirt-dev   qemu-kvm  libvirt-daemon-system  libvirt-clients  bridge-utils  virtinst wget libguestfs-tools
+          sudo systemctl enable --now libvirtd
+          sudo systemctl start libvirtd
+
+      - name: Build
+        run: wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+
+      - name:  Resize
+        run: qemu-img resize noble-server-cloudimg-amd64.img +20G
+
