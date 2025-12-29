@@ -44,9 +44,8 @@ jobs:
       - name:  Extend cloud image
         run: |
           sudo virt-customize -v -a noble-expanded.img \
-            --install ubuntu-desktop,xrdp,xorgxrdp,grub-pc-bin,firefox,vim,net-tools,nmap \
+            --install ubuntu-desktop,xrdp,grub-pc-bin,firefox,vim,net-tools,nmap \
             --run-command 'ln -sf /dev/null /etc/systemd/system/systemd-networkd-wait-online.service' \
-            --run-command 'if [ -f /etc/gdm3/custom.conf ]; then sed -i "s/^#\\?WaylandEnable=.*/WaylandEnable=false/" /etc/gdm3/custom.conf; else mkdir -p /etc/gdm3; printf "[daemon]\nWaylandEnable=false\n" > /etc/gdm3/custom.conf; fi' \
             --run-command 'grub-install --target=i386-pc /dev/sda' \
             --run-command 'update-grub' \
             --run-command 'apt-get clean && rm -rf /var/lib/apt/lists/*'
