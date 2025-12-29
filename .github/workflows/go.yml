@@ -44,5 +44,11 @@ jobs:
 
       - name:  Extend cloud image
         run: |
-          sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean'
+          sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean && rm -rf /var/lib/apt/lists/*'
           ls -la
+
+      - name: Sparsify image
+        run: |
+          sudo virt-sparsify --compress noble-expanded.img noble-expanded.sparse.img
+          mv noble-expanded.sparse.img noble-expanded.img
+          ls -lh noble-expanded.img
