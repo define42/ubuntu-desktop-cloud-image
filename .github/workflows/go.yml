@@ -34,20 +34,8 @@ jobs:
         run: wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 
       - name:  Resize
-        run: qemu-img resize noble-server-cloudimg-amd64.img +20G
-
-      - name:  Update
-        run: virt-customize -v  -a noble-server-cloudimg-amd64.img --run-command "apt-get update" 
-        env:
-          LIBGUESTFS_BACKEND: direct
-          LIBGUESTFS_NETWORK: "1"
-          LIBGUESTFS_USE_PASST: "0"
-          LIBGUESTFS_DNS: "1.1.1.1 8.8.8.8"
+        run: sudo qemu-img resize noble-server-cloudimg-amd64.img +20G
 
       - name:  Extend cloud image
-        run: virt-customize -v  -a noble-server-cloudimg-amd64.img --install vim
-        env:
-          LIBGUESTFS_BACKEND: direct
-          LIBGUESTFS_NETWORK: "1"
-          LIBGUESTFS_USE_PASST: "0"
-          LIBGUESTFS_DNS: "1.1.1.1 8.8.8.8"
+        run: sudo  virt-customize -v  -a noble-server-cloudimg-amd64.img --install vim
+
