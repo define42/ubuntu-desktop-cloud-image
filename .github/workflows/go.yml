@@ -37,5 +37,5 @@ jobs:
         run: sudo qemu-img resize noble-server-cloudimg-amd64.img +20G
 
       - name:  Extend cloud image
-        run: sudo  virt-customize -v  -a noble-server-cloudimg-amd64.img --install vim
+        run: sudo  virt-customize -v  -a noble-server-cloudimg-amd64.img --install ubuntu-desktop,xrdp
 
