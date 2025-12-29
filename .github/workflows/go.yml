@@ -34,7 +34,10 @@ jobs:
         run: wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 
       - name:  Resize
-        run: sudo qemu-img resize noble-server-cloudimg-amd64.img +20G && sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
+        run: |
+          sudo qemu-img resize noble-server-cloudimg-amd64.img +20G 
+          qemu-img create -f qcow2 noble-expanded.img 24G
+          sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
 
       - name:  Extend cloud image
-        run: sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop,xrdp
+        run: sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop,xrdp --run-command 'apt-get clean'
