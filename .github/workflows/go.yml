@@ -27,12 +27,8 @@ jobs:
 
       - name: Install packages
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libvirt-dev   qemu-kvm  libvirt-daemon-system  libvirt-clients  bridge-utils  virtinst wget libguestfs-tools passt
-          sudo systemctl enable --now libvirtd
-          sudo systemctl start libvirtd
-          sudo chmod o+rx /boot
-          sudo chmod o+r /boot/vmlinuz-*
+          sudo apt update -y
+          sudo apt install wget curl libguestfs-tools -y
 
       - name: WGET
         run: wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
