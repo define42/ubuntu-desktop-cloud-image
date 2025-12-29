@@ -39,9 +39,11 @@ jobs:
           ls -la
           sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
           ls -la
+          df -h
 
       - name:  Extend cloud image
         run: |
           sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean && rm -rf /var/lib/apt/lists/*'
           ls -la
+          df -h
 
