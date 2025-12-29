@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-22.04 ## Only works on ubuntu 22.04 
 
     permissions:
       contents: write   # required for tags + GitHub releases
@@ -36,10 +36,7 @@ jobs:
       - name:  Resize
         run: |
           qemu-img create -f qcow2 noble-expanded.img 8G
-          ls -la
           sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
-          ls -la
-          df -h
 
       - name:  Extend cloud image
         run: |
@@ -50,13 +47,11 @@ jobs:
             --run-command 'update-grub' \
             --run-command 'apt-get clean && rm -rf /var/lib/apt/lists/*'
           ls -la
-          df -h
 
       - name:  Compress cloud image
         run: |
-          sudo virt-sparsify --compress noble-expanded.img noble-final.img
+          sudo virt-sparsify --compress noble-expanded.img noble-desktop-cloudimg-amd64.img
           ls -la
-          df -h
 
       # -------------------------------
       # Versioning & Release (main only)
@@ -76,4 +71,4 @@ jobs:
           tag: ${{ steps.tag.outputs.new_tag }}
           name: Release ${{ steps.tag.outputs.new_tag }}
           body: ${{ steps.tag.outputs.changelog }}
-          artifacts: noble-final.img
+          artifacts: noble-desktop-cloudimg-amd64.img
