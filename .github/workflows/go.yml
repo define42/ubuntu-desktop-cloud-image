@@ -35,8 +35,6 @@ jobs:
 
       - name:  Resize
         run: |
-          sudo qemu-img resize noble-server-cloudimg-amd64.img +20G 
-          ls -la
           qemu-img create -f qcow2 noble-expanded.img 24G
           ls -la
           sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
@@ -47,8 +45,3 @@ jobs:
           sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean && rm -rf /var/lib/apt/lists/*'
           ls -la
 
-      - name: Sparsify image
-        run: |
-          sudo virt-sparsify --compress noble-expanded.img noble-expanded.sparse.img
-          mv noble-expanded.sparse.img noble-expanded.img
-          ls -lh noble-expanded.img
