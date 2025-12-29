@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-22.04
 
     permissions:
       contents: write   # required for tags + GitHub releases
@@ -36,8 +36,11 @@ jobs:
       - name:  Resize
         run: |
           sudo qemu-img resize noble-server-cloudimg-amd64.img +20G 
+          ls -la
           qemu-img create -f qcow2 noble-expanded.img 24G
+          ls -la
           sudo virt-resize --expand /dev/sda1 noble-server-cloudimg-amd64.img noble-expanded.img
+          ls -la
 
       - name:  Extend cloud image
-        run: sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop,xrdp --run-command 'apt-get clean'
+        run: sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean'
