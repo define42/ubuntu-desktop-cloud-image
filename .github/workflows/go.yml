@@ -43,4 +43,6 @@ jobs:
           ls -la
 
       - name:  Extend cloud image
-        run: sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean'
+        run: |
+          sudo  virt-customize -v  -a noble-expanded.img --install ubuntu-desktop-minimal,xrdp --run-command 'apt-get clean'
+          ls -la
