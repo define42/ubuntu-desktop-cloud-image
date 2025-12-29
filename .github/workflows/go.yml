@@ -42,6 +42,16 @@ jobs:
 
       - name:  Update
         run: virt-customize -v  -a noble-server-cloudimg-amd64.img --run-command "apt-get update" 
+        env:
+          LIBGUESTFS_BACKEND: direct
+          LIBGUESTFS_NETWORK: "1"
+          LIBGUESTFS_USE_PASST: "0"
+          LIBGUESTFS_DNS: "1.1.1.1 8.8.8.8"
 
       - name:  Extend cloud image
         run: virt-customize -v  -a noble-server-cloudimg-amd64.img --install vim
+        env:
+          LIBGUESTFS_BACKEND: direct
+          LIBGUESTFS_NETWORK: "1"
+          LIBGUESTFS_USE_PASST: "0"
+          LIBGUESTFS_DNS: "1.1.1.1 8.8.8.8"
