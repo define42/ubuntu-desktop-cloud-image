@@ -40,5 +40,8 @@ jobs:
       - name:  Resize
         run: qemu-img resize noble-server-cloudimg-amd64.img +20G
 
+      - name:  Update
+        run: virt-customize -v  -a noble-server-cloudimg-amd64.img --run-command "apt-get update" 
+
       - name:  Extend cloud image
         run: virt-customize -v  -a noble-server-cloudimg-amd64.img --install vim
