@@ -53,8 +53,6 @@ run-command usermod -aG ssl-cert xrdp
 run-command systemctl enable xrdp
 
 # Prefer LightDM/XFCE for local UI
-run-command systemctl disable gdm3
-run-command systemctl mask gdm3
 run-command systemctl set-default graphical.target
 
 # Disable AppArmor service immediately (kernel param applies after reboot)
