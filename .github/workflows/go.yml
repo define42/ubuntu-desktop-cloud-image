@@ -43,7 +43,7 @@ jobs:
           sudo virt-customize -v -a noble-expanded.img \
             --install xfce4,xfce4-goodies,xfce4-terminal,lightdm,lightdm-gtk-greeter,xauth,xserver-xorg-input-libinput,xserver-xorg-legacy,xrdp,xorgxrdp,dbus-x11,grub-pc-bin,vim,net-tools,nmap,snapd \
             --upload google-chrome-stable_current_amd64.deb:/tmp/google-chrome-stable_current_amd64.deb \
-            --run-command 'apt-get update && apt-get install -y /tmp/google-chrome-stable_current_amd64.deb && rm -f /tmp/google-chrome-stable_current_amd64.deb' \
+            --run-command 'dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm -f /tmp/google-chrome-stable_current_amd64.deb' \
             --run-command 'ln -sf /dev/null /etc/systemd/system/systemd-networkd-wait-online.service' \
             --run-command 'grub-install --target=i386-pc /dev/sda' \
             --run-command 'update-grub' \
