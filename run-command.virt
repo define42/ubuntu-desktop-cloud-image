@@ -48,6 +48,10 @@ run-command mkdir -p /etc/firefox/policies/
 upload policies.json:/etc/firefox/policies/policies.json
 run-command chmod 0644 /etc/firefox/policies/policies.json
 
+# Setup xrdp
+upload xrdp.ini:/etc/xrdp/xrdp.ini
+run-command chmod 0644 /etc/xrdp/xrdp.ini
+
 # Enable XRDP
 run-command usermod -aG ssl-cert xrdp
 run-command systemctl enable xrdp
@@ -60,4 +64,3 @@ run-command systemctl disable apparmor
 
 # Update GRUB and reboot to apply kernel params
 run-command update-grub
-

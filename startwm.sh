@@ -7,5 +7,6 @@ if [ -r ~/.profile ]; then
 fi
 if command -v xfconf-query >/dev/null 2>&1; then
   xfconf-query -c xfwm4 -p /general/use_compositing -n -t bool -s false || true
+  xfconf-query -c xsettings -p /Net/ThemeName -s "Adwaita-dark" || true
 fi
 exec startxfce4
