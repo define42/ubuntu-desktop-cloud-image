@@ -41,7 +41,7 @@ jobs:
       - name:  Extend cloud image
         run: |
           sudo virt-customize -v -a noble-expanded.img \
-            --install xubuntu-desktop,xrdp,grub-pc-bin,firefox,vim,net-tools,nmap,snapd \
+            --install xfce4,xfce4-goodies,xfce4-terminal,lightdm,lightdm-gtk-greeter,xauth,xserver-xorg-input-libinput,xserver-xorg-legacy,xrdp,xorgxrdp,dbus-x11,grub-pc-bin,vim,net-tools,nmap,snapd \
             --run-command 'ln -sf /dev/null /etc/systemd/system/systemd-networkd-wait-online.service' \
             --run-command 'grub-install --target=i386-pc /dev/sda' \
             --run-command 'update-grub' \
