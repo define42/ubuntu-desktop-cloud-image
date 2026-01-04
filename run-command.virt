@@ -58,8 +58,8 @@ run-command systemctl mask gdm3
 run-command systemctl set-default graphical.target
 
 # Disable AppArmor service immediately (kernel param applies after reboot)
-systemctl disable apparmor
+run-command systemctl disable apparmor
 
 # Update GRUB and reboot to apply kernel params
-update-grub
+run-command update-grub
 
