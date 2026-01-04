@@ -1,2 +1,2 @@
 run-command 'ls'
-run-command 'echo hello'
+run-command echo hello
