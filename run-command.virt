@@ -44,6 +44,7 @@ upload 99-disable-apparmor.cfg:/etc/default/grub.d/99-disable-apparmor.cfg
 run-command chmod 0644 /etc/default/grub.d/99-disable-apparmor.cfg
 
 # Reduce Firefox CPU usage under XRDP
+run-command mkdir -p /etc/firefox/policies/
 upload policies.json:/etc/firefox/policies/policies.json
 run-command chmod 0644 /etc/firefox/policies/policies.json
 
