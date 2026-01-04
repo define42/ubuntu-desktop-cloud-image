@@ -1,5 +1,13 @@
 run-command 'ls'
 run-command echo hello
+
 upload google-chrome-stable_current_amd64.deb:/tmp/google-chrome-stable_current_amd64.deb
 run-command apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
 run-command rm -f /tmp/google-chrome-stable_current_amd64.deb
+
+upload code_1.107.1-1765982436_amd64.deb:/tmp/code_1.107.1-1765982436_amd64.deb
+run-command apt-get install -y /tmp/code_1.107.1-1765982436_amd64.deb
+run-command rm -f /tmp/*.deb
+
+
+
