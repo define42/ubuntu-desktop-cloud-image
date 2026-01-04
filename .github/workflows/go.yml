@@ -24,9 +24,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0   # REQUIRED for tag calculation
+          lfs: true
 
       - name: Install packages
         run: |
+          ls -la
           sudo apt update -y
           sudo apt install wget curl libguestfs-tools -y
 
