@@ -17,7 +17,7 @@ run-command apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Default XFCE session for new users
 upload .xsession:/etc/skel/.xsession
-run-command chmod 0755 .xsession:/etc/skel/.xsession
+run-command chmod 0755 /etc/skel/.xsession
 
 # LightDM config for XFCE
 upload 50-xfce.conf:/etc/lightdm/lightdm.conf.d/50-xfce.conf
