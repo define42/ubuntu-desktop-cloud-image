@@ -14,3 +14,36 @@ run-command grub-install --target=i386-pc /dev/sda
 run-command update-grub
 run-command apt-get clean && rm -rf /var/lib/apt/lists/*
 
+
+# Default XFCE session for new users
+upload .xsession:/etc/skel/.xsession
+run-command chmod 0755 .xsession:/etc/skel/.xsession
+
+# LightDM config for XFCE
+upload 50-xfce.conf:/etc/lightdm/lightdm.conf.d/50-xfce.conf
+run-command chmod 0644 /etc/lightdm/lightdm.conf.d/50-xfce.conf
+
+# Make LightDM the default display manager
+upload default-display-manager:/etc/X11/default-display-manager
+run-command chmod 0644 /etc/X11/default-display-manager
+
+# Allow XRDP to launch Xorg for non-console users
+upload Xwrapper.config:/etc/X11/Xwrapper.config
+run-command chmod 0644 /etc/X11/Xwrapper.config
+
+# Force XRDP sessions to start XFCE
+upload startwm.sh:/etc/xrdp/startwm.sh
+run-command chmod 0755 /etc/xrdp/startwm.sh
+
+# Disable XFCE compositor for XRDP performance
+upload xfwm4.xml:/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+run-command chmod 0644 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
+
+# Disable AppArmor at kernel level
+upload 99-disable-apparmor.cfg:/etc/default/grub.d/99-disable-apparmor.cfg
+run-command chmod 0644 /etc/default/grub.d/99-disable-apparmor.cfg
+
+# Reduce Firefox CPU usage under XRDP
+upload policies.json:/etc/firefox/policies/policies.json
+run-command chmod 0644 /etc/firefox/policies/policies.json
+
