@@ -6,9 +6,9 @@ upload google-chrome-stable_current_amd64.deb:/tmp/google-chrome-stable_current_
 run-command apt-get install -y /tmp/google-chrome-stable_current_amd64.deb
 run-command rm -f /tmp/google-chrome-stable_current_amd64.deb
 
-upload code_1.107.1-1765982436_amd64.deb:/tmp/code_1.107.1-1765982436_amd64.deb
-run-command apt-get install -y /tmp/code_1.107.1-1765982436_amd64.deb
-run-command rm -f /tmp/*.deb
+#upload code_1.107.1-1765982436_amd64.deb:/tmp/code_1.107.1-1765982436_amd64.deb
+#run-command apt-get install -y /tmp/code_1.107.1-1765982436_amd64.deb
+#run-command rm -f /tmp/*.deb
 
 run-command grub-install --target=i386-pc /dev/sda
 run-command update-grub
@@ -65,11 +65,11 @@ run-command systemctl disable apparmor
 # Update GRUB and reboot to apply kernel params
 run-command update-grub
 
-# Removed machine-id
-run-command rm -f /etc/machine-id
-run-command rm -f /var/lib/dbus/machine-id
+# Truncate machine-id
+run-command truncate -s 0 /etc/machine-id
+run-command truncate -s 0 /var/lib/dbus/machine-id
 
 # Enable network-manager
-run-command systemctl enable systemd-networkd
-run-command systemctl enable systemd-resolved
-run-command ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+#run-command systemctl enable systemd-networkd
+#run-command systemctl enable systemd-resolved
+#run-command ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
