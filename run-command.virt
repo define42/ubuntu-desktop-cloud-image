@@ -70,6 +70,6 @@ run-command rm -f /etc/machine-id
 run-command rm -f /var/lib/dbus/machine-id
 
 # Enable network-manager
-run-command systemctl enable --now systemd-networkd
-run-command systemctl enable --now systemd-resolved
+run-command systemctl enable systemd-networkd
+run-command systemctl enable systemd-resolved
 run-command ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf

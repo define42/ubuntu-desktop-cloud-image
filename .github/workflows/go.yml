@@ -42,7 +42,7 @@ jobs:
 
       - name:  Extend cloud image
         run: |
-          sudo virt-customize -v -a noble-expanded.img --commands-from-file 'run-command.virt'
+          sudo virt-customize -a noble-expanded.img --commands-from-file 'run-command.virt'
           ls -la
 
       - name:  Compress cloud image
